@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "false"
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ingress.ukwest.cloudapp.azure.com
+    http:
+      paths:
+      - path: /nginx
+        backend:
+          serviceName: my-nginx-1
+          servicePort: 80
